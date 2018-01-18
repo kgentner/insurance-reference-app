@@ -1,6 +1,6 @@
 # insurance-reference-application
 
-Check it out on Azure: <a href="https://insurancereferenceapp.azurewebsites.net" target="_blank" >https://insurancereferenceapp.azurewebsites.net</a>
+Check it out on Azure: <a href="https://insurancereferenceapp.azurewebsites.net">https://insurancereferenceapp.azurewebsites.net</a>
 
 ### Summary
 REGGIE - A web application which helps healthcare registration professionals with identifying correct insurance plans.
