@@ -1,0 +1,560 @@
+@model Reggie.Models.Insurance
+
+@{
+    ViewData["Title"] = "Create";
+}
+<h2>Create New Payor-Plan</h2>
+<form asp-action="Create" id="createPlanForm">
+    <div class="form-horizontal">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <hr />
+        <h4>General</h4>
+
+        <div class="form-group">
+            
+            <label asp-for="Payor" class="col-md-2 control-label">@Html.ValidationMessageFor(p => p.Payor, "*") Payor</label>
+            <div class="col-md-10">
+                <input asp-for="Payor" class="form-control"></input>     
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Plan" class="col-md-2 control-label">@Html.ValidationMessageFor(p => p.Plan, "*") Plan</label>
+            <div class="col-md-10">
+                <input asp-for="Plan" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Keywords" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Keywords" class="form-control" placeholder="e.g. Registration Detective, Badge, etc." />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PayorWebsite" class="col-md-2 control-label">Payor Website</label>
+            <div class="col-md-10">
+                <input asp-for="PayorWebsite" class="form-control" placeholder="http://www.example.com" type="url" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="OtherContactInfo" class="col-md-2 control-label">Other Contact Info</label>
+            <div class="col-md-10">
+                <input asp-for="OtherContactInfo" class="form-control" />
+            </div>
+        </div>
+
+      
+        <hr />
+        <h4>@Html.ValidationMessageFor(p => p.Type_Commercial, "*") Types</h4>
+        <div class="form-group">
+            <label asp-for="Type_Commercial" class="col-md-2 control-label">Commercial</label>
+            <div class="col-md-1">
+                <input asp-for="Type_Commercial"  type="checkbox" name="Commercial" value="True"> 
+                <input asp-for="Type_Commercial"  type="hidden" name="Commercial" value="False" > 
+            </div>
+            <label asp-for="Type_Medicare" class="col-md-2 control-label">Medicare</label>
+            <div class="col-md-1">
+                <input asp-for="Type_Medicare"  type="checkbox" name="Medicare" value="True" > 
+                <input asp-for="Type_Medicare"  type="hidden" name="Medicare" value="False" > 
+            </div>
+            <label asp-for="Type_Medicaid" class="col-md-2 control-label">Medicaid</label>
+            <div class="col-md-1">
+                <input asp-for="Type_Medicaid"  type="checkbox" name="Medicaid" value="True" > 
+                <input asp-for="Type_Medicaid"  type="hidden" name="Medicaid" value="False" > 
+            </div>
+                <label asp-for="Type_Military" class="col-md-2 control-label">Military</label>
+            <div class="col-md-1">
+                <input asp-for="Type_Military"  type="checkbox" name="Military" value="True" > 
+                <input asp-for="Type_Military"  type="hidden" name="Military" value="False" > 
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Type_CommercialMang" class="col-md-2 control-label">Commercial Managed</label>
+            <div class="col-md-1">
+                <input asp-for="Type_CommercialMang"  type="checkbox" name="CommercialMang" value="True" > 
+                <input asp-for="Type_CommercialMang"  type="hidden" name="CommercialMang" value="False" > 
+            </div>
+            <label asp-for="Type_MedicareMang" class="col-md-2 control-label">Medicare Managed</label>
+            <div class="col-md-1">
+                <input asp-for="Type_MedicareMang"  type="checkbox" name="MedicareMang" value="True" > 
+                <input asp-for="Type_MedicareMang"  type="hidden" name="MedicareMang" value="False" > 
+            </div>
+            <label asp-for="Type_MedicaidMang" class="col-md-2 control-label">Medicaid Managed</label>
+            <div class="col-md-1">
+                <input asp-for="Type_MedicaidMang"  type="checkbox" name="MedicaidMang" value="True" > 
+                <input asp-for="Type_MedicaidMang"  type="hidden" name="MedicaidMang" value="False" > 
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3"></div>
+            <label asp-for="Type_MedicareSup" class="col-md-2 control-label">Medicare Supplement</label>
+            <div class="col-md-1">
+                <input asp-for="Type_MedicareSup"  type="checkbox" name="MedicareSup" value="True"  > 
+                <input asp-for="Type_MedicareSup"  type="hidden" name="MedicareSup" value="False" > 
+            </div>
+        </div>
+        
+        <hr />
+        <h4>Products</h4>
+        <div class="form-group">
+            <label asp-for="Product_EPO" class="col-md-2 control-label">EPO</label>
+            <div class="col-md-1">
+                <input asp-for="Product_EPO"  type="checkbox" name="EPO" value="True"  > 
+                <input asp-for="Product_EPO"  type="hidden" name="EPO" value="False" >   
+            </div>
+            <label asp-for="Product_HMO" class="col-md-1 control-label">HMO</label>
+            <div class="col-md-1">
+                <input asp-for="Product_HMO"  type="checkbox" name="HMO" value="True" > 
+                <input asp-for="Product_HMO"  type="hidden" name="HMO" value="False" > 
+            </div>
+            <label asp-for="Product_Ind" class="col-md-1 control-label">Indemnity</label>
+            <div class="col-md-1">
+                <input asp-for="Product_Ind"  type="checkbox" name="Indemnity" value="True" > 
+                <input asp-for="Product_Ind"  type="hidden" name="Indemnity" value="False" > 
+            </div>
+            <label asp-for="Product_PEBB" class="col-md-1 control-label">PEBB</label>
+            <div class="col-md-1">
+                <input asp-for="Product_PEBB"  type="checkbox" name="PEBB" value="True"  > 
+                <input asp-for="Product_PEBB"  type="hidden" name="PEBB" value="False" > 
+            </div>
+            <label asp-for="Product_PPO" class="col-md-1 control-label">PPO</label>
+            <div class="col-md-1">
+                <input asp-for="Product_PPO"  type="checkbox" name="PPO" value="True"  > 
+                <input asp-for="Product_PPO"  type="hidden" name="PPO" value="False" > 
+            </div>
+        </div>
+
+        <hr />
+        <h4>@Html.ValidationMessageFor(p => p.Location_AK, "*") Locations</h4>
+        <div class="form-group">
+            <label asp-for="Location_AK" class="col-md-2 control-label">Alaska</label>
+            <div class="col-md-1">
+                <input asp-for="Location_AK"  type="checkbox" name="location_ak" value="True"  > 
+                <input asp-for="Location_AK"  type="hidden" name="location_ak" value="False" > 
+            </div>
+            <label asp-for="Location_CA" class="col-md-1 control-label">California</label>
+            <div class="col-md-1">
+                <input asp-for="Location_CA"  type="checkbox" name="location_ca" value="True"  > 
+                <input asp-for="Location_CA"  type="hidden" name="location_ca" value="False" > 
+            </div>
+            <label asp-for="Location_MT" class="col-md-1 control-label">Montana</label>
+            <div class="col-md-1">
+                <input asp-for="Location_MT"  type="checkbox" name="location_mt" value="True"  > 
+                <input asp-for="Location_MT"  type="hidden" name="location_mt" value="False" > 
+            </div>
+            <label asp-for="Location_OR" class="col-md-1 control-label">Oregon</label>
+            <div class="col-md-1">
+                <input asp-for="Location_OR"  type="checkbox" name="location_or" value="True" > 
+                <input asp-for="Location_OR"  type="hidden" name="location_or" value="False" > 
+            </div>
+            <label asp-for="Location_WA" class="col-md-1 control-label">Washington</label>
+            <div class="col-md-1">
+                <input asp-for="Location_WA"  type="checkbox" name="location_wa" value="True"  > 
+                <input asp-for="Location_WA"  type="hidden" name="location_wa" value="False" > 
+            </div>
+        </div>
+
+        <hr />
+        <h4>Card Information</h4>
+        <div class="form-group">
+            <label asp-for="Address1" class="col-md-2 control-label">Address 1</label>
+            <div class="col-md-10">
+                <input asp-for="Address1" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Address2" class="col-md-2 control-label">Address 2</label>
+            <div class="col-md-10">
+                <input asp-for="Address2" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="City" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="City" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="State" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="State">
+                    <option value="NULL">Select State</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="DC">District Of Columbia</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                </select>				
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Zip" class="col-md-2 control-label">@Html.ValidationMessageFor(p => p.Zip, "*") Zip</label>
+            <div class="col-md-10">
+                <input asp-for="Zip" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ID_Description" class="col-md-2 control-label">ID Description</label>
+            <div class="col-md-10">
+                <input asp-for="ID_Description" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ReadingHint1" class="col-md-2 control-label">Card Reading Hint 1</label>
+            <div class="col-md-10">
+                <input asp-for="ReadingHint1" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ReadingHint2" class="col-md-2 control-label">Card Reading Hint 2</label>
+            <div class="col-md-10">
+                <input asp-for="ReadingHint2" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ReadingHint3" class="col-md-2 control-label">Card Reading Hint 3</label>
+            <div class="col-md-10">
+                <input asp-for="ReadingHint3" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ReadingHint4" class="col-md-2 control-label">Card Reading Hint 4</label>
+            <div class="col-md-10">
+                <input asp-for="ReadingHint4" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ReadingHint5" class="col-md-2 control-label">Card Reading Hint 5</label>
+            <div class="col-md-10">
+                <input asp-for="ReadingHint5" class="form-control" />
+            </div>
+        </div>
+
+        <hr />
+        <h4>EMR Information</h4>
+        <div class="form-group">
+            <label asp-for="RegistrationHint1" class="col-md-2 control-label">EMR Registration Hint 1</label>
+            <div class="col-md-10">
+                <input asp-for="RegistrationHint1" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="RegistrationHint2" class="col-md-2 control-label">EMR Registration Hint 2</label>
+            <div class="col-md-10">
+                <input asp-for="RegistrationHint2" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="RegistrationHint3" class="col-md-2 control-label">EMR Registration Hint 3</label>
+            <div class="col-md-10">
+                <input asp-for="RegistrationHint3" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="RegistrationHint4" class="col-md-2 control-label">EMR Registration Hint 4</label>
+            <div class="col-md-10">
+                <input asp-for="RegistrationHint4" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="RegistrationHint5" class="col-md-2 control-label">EMR Registration Hint 5</label>
+            <div class="col-md-10">
+                <input asp-for="RegistrationHint5" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="RTE_Info1" class="col-md-2 control-label">RTE Information 1</label>
+            <div class="col-md-10">
+                <input asp-for="RTE_Info1" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="RTE_Info2" class="col-md-2 control-label">RTE Information 2</label>
+            <div class="col-md-10">
+                <input asp-for="RTE_Info2" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="RTE_Info3" class="col-md-2 control-label">RTE Information 3</label>
+            <div class="col-md-10">
+                <input asp-for="RTE_Info3" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="RTE_Info4" class="col-md-2 control-label">RTE Information 4</label>
+            <div class="col-md-10">
+                <input asp-for="RTE_Info4" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="RTE_Info5" class="col-md-2 control-label">RTE Information 5</label>
+            <div class="col-md-10">
+                <input asp-for="RTE_Info5" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Assoc_Workflow1" class="col-md-2 control-label">Associated Workflow 1 - URL</label>
+            <div class="col-md-10">
+                <input asp-for="Assoc_Workflow1" class="form-control" placeholder="http://www.example.com" type="url"  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Assoc_Workflow1_Title" class="col-md-2 control-label">Associated Workflow 1 - Title</label>
+            <div class="col-md-10">
+                <input asp-for="Assoc_Workflow1_Title" class="form-control" placeholder="Please provide a name for this Associated Workflow." />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Assoc_Workflow2" class="col-md-2 control-label">Associated Workflow 2 - URL</label>
+            <div class="col-md-10">
+                <input asp-for="Assoc_Workflow2" class="form-control" placeholder="http://www.example.com" type="url"  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Assoc_Workflow2_Title" class="col-md-2 control-label">Associated Workflow 2 - Title</label>
+            <div class="col-md-10">
+                <input asp-for="Assoc_Workflow2_Title" class="form-control" placeholder="Please provide a name for this Associated Workflow." />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Assoc_Workflow3" class="col-md-2 control-label">Associated Workflow 3 - URL</label>
+            <div class="col-md-10">
+                <input asp-for="Assoc_Workflow3" class="form-control" placeholder="http://www.example.com" type="url"  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Assoc_Workflow3_Title" class="col-md-2 control-label">Associated Workflow 3 - Title</label>
+            <div class="col-md-10">
+                <input asp-for="Assoc_Workflow3_Title" class="form-control" placeholder="Please provide a name for this Associated Workflow." />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Assoc_Workflow4" class="col-md-2 control-label">Associated Workflow 4 - URL</label>
+            <div class="col-md-10">
+                <input asp-for="Assoc_Workflow4" class="form-control" placeholder="http://www.example.com" type="url"  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Assoc_Workflow4_Title" class="col-md-2 control-label">Associated Workflow 4 - Title</label>
+            <div class="col-md-10">
+                <input asp-for="Assoc_Workflow4_Title" class="form-control" placeholder="Please provide a name for this Associated Workflow." />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Assoc_Workflow5" class="col-md-2 control-label">Associated Workflow 5 - URL</label>
+            <div class="col-md-10">
+                <input asp-for="Assoc_Workflow5" class="form-control" placeholder="http://www.example.com" type="url" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Assoc_Workflow5_Title" class="col-md-2 control-label">Associated Workflow 5 - Title</label>
+            <div class="col-md-10">
+                <input asp-for="Assoc_Workflow5_Title" class="form-control" placeholder="Please provide a name for this Associated Workflow." />
+            </div>
+        </div>
+
+        <hr />
+        <h4>Business Office Information</h4>
+        <div class="form-group">
+            <label asp-for="EDI_Number" class="col-md-2 control-label">EDI Number</label>
+            <div class="col-md-10">
+                <input asp-for="EDI_Number" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="HB_OfficeInfo1" class="col-md-2 control-label">Hospital Billing Office Info 1</label>
+            <div class="col-md-10">
+                <input asp-for="HB_OfficeInfo1" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="HB_OfficeInfo2" class="col-md-2 control-label">Hospital Billing Office Info 2</label>
+            <div class="col-md-10">
+                <input asp-for="HB_OfficeInfo2" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="HB_OfficeInfo3" class="col-md-2 control-label">Hospital Billing Office Info 3</label>
+            <div class="col-md-10">
+                <input asp-for="HB_OfficeInfo3" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="HB_OfficeInfo4" class="col-md-2 control-label">Hospital Billing Office Info 4</label>
+            <div class="col-md-10">
+                <input asp-for="HB_OfficeInfo4" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="HB_OfficeInfo5" class="col-md-2 control-label">Hospital Billing Office Info 5</label>
+            <div class="col-md-10">
+                <input asp-for="HB_OfficeInfo5" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PB_OfficeInfo1" class="col-md-2 control-label">Professional Billing Office Info 1</label>
+            <div class="col-md-10">
+                <input asp-for="PB_OfficeInfo1" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PB_OfficeInfo2" class="col-md-2 control-label">Professional Billing Office Info 2</label>
+            <div class="col-md-10">
+                <input asp-for="PB_OfficeInfo2" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PB_OfficeInfo3" class="col-md-2 control-label">Professional Billing Office Info 3</label>
+            <div class="col-md-10">
+                <input asp-for="PB_OfficeInfo3" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PB_OfficeInfo4" class="col-md-2 control-label">Professional Billing Office Info 4</label>
+            <div class="col-md-10">
+                <input asp-for="PB_OfficeInfo4" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PB_OfficeInfo5" class="col-md-2 control-label">Professional Billing Office Info 5</label>
+            <div class="col-md-10">
+                <input asp-for="PB_OfficeInfo5" class="form-control" />
+            </div>
+        </div>
+        
+        <hr />
+        <h4>Newsfeed</h4>
+        <div class="form-group">
+            <label asp-for="News" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="News" class="form-control" />
+            </div>
+        </div>
+
+        <hr />
+        <h4>Status Dates</h4>
+        <div class="form-group">
+            <div class="col-md-2 text-right">
+                <label asp-for="NewsfeedStartDate" class="control-label">@Html.ValidationMessageFor(p => p.NewsfeedStartDate, "*") Newsfeed Start Date</label>
+                <a href="#">
+                    <span class="glyphicon glyphicon-info-sign purple" data-toggle="tooltip" title="The date that this Payor-Plan's News should START displaying in the Newsfeed, provided there is also a valid REGGIE Publish Start Date. If Newsfeed Start Date is empty, the news item will not be listed."></span>
+                </a>
+            </div>
+            <div class="col-md-2">
+                <input asp-for="NewsfeedStartDate" class="form-control" placeholder="mm/dd/yyyy" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-2 text-right">
+                <label asp-for="NewsfeedEndDate" class="control-label">@Html.ValidationMessageFor(p => p.NewsfeedEndDate, "*") Newsfeed End Date</label>
+                <a href="#">
+                    <span class="glyphicon glyphicon-info-sign purple" data-toggle="tooltip" title="The date that this Payor-Plan's News should STOP displaying in the Newsfeed. If Newsfeed End Date is empty and there is a valid Newsfeed Start Date, the news will be listed indefinitely."></span>
+                </a>
+            </div>
+            <div class="col-md-2">
+                <input asp-for="NewsfeedEndDate" class="form-control" placeholder="mm/dd/yyyy"  />    
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-2 text-right">
+                <label asp-for="PlanActiveDate" class="control-label">@Html.ValidationMessageFor(p => p.PlanActiveDate, "*") Plan Active Date</label>
+                <a href="#">
+                    <span class="glyphicon glyphicon-info-sign purple" data-toggle="tooltip" title="The date that this Payor-Plan becomes ACTIVE. Both ACTIVE & INACTIVE plans are displayed in REGGIE."></span>
+                </a>
+            </div>
+            <div class="col-md-2">
+                <input asp-for="PlanActiveDate" class="form-control" placeholder="mm/dd/yyyy"  />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-2 text-right">
+                <label asp-for="PlanInactiveDate" class="control-label">@Html.ValidationMessageFor(p => p.PlanInactiveDate, "*") Plan Inactive Date</label>
+                <a href="#">
+                    <span class="glyphicon glyphicon-info-sign purple" data-toggle="tooltip" title="The date that this Payor-Plan becomes INACTIVE. Both ACTIVE & INACTIVE plans are displayed in REGGIE."></span>
+                </a>
+            </div>
+            <div class="col-md-2">
+                <input asp-for="PlanInactiveDate" class="form-control" placeholder="mm/dd/yyyy"  /> 
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-2 text-right">
+                <label asp-for="ReggiePublishStartDate" class=" control-label">@Html.ValidationMessageFor(p => p.ReggiePublishStartDate, "*") REGGIE Publish Start Date</label>
+                <a href="#">
+                    <span class="glyphicon glyphicon-info-sign purple" data-toggle="tooltip" title="The date that this Payor-Plan should START displaying on REGGIE. Requires a valid PlanActiveDate or PlanInactiveDate. If the REGGIE Publish Start Date is empty, the Payor-Plan will not be displayed on REGGIE."></span>
+                </a>
+            </div>
+            <div class="col-md-2">
+                <input asp-for="ReggiePublishStartDate" class="form-control" placeholder="mm/dd/yyyy"  />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-2 text-right">
+                <label asp-for="ReggiePublishEndDate" class="control-label">@Html.ValidationMessageFor(p => p.ReggiePublishEndDate, "*") Reggie Publish End Date</label>
+                <a href="#">
+                    <span class="glyphicon glyphicon-info-sign purple" data-toggle="tooltip" title="The date that this Payor-Plan should STOP displaying on REGGIE.  If the REGGIE Publish End Date is empty and there is a valid REGGIE Publish Start Date, this Payor-Plan will display on REGGIE indefinitely."></span>
+                </a>
+            </div>
+            <div class="col-md-2">
+                <input asp-for="ReggiePublishEndDate" class="form-control" placeholder="mm/dd/yyyy"  />  
+            </div>
+        </div>
+        <br>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Create" class="btn btn-success" id="submitCreatePlan" onClick="scroll(0, 0);"/>
+            </div>
+        </div>
+         <div asp-validation-summary="All" class="text-danger"></div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

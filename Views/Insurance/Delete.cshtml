@@ -1,0 +1,21 @@
+@model Reggie.Models.Insurance
+
+@{
+    ViewData["Title"] = "Delete Payor-Plan";
+}
+<div class="container-fluid" >
+    <h2>@ViewData["Title"]</h2>
+    <hr />
+
+    <h3 class="delete-confirm">Are you sure you want to delete this Payor-Plan from REGGIE?</h3>
+
+    </br>
+    <a class="btn btn-success col-md-1" href="/insurance/Details/@Model.Id">Cancel</a>
+    <div class="btn-divider col-md-1"></div>
+    <form asp-action="Delete" >
+        <div class="form-actions no-color ">
+            <input type="submit" value="Delete" class="btn btn-danger col-md-1" />
+        </div>
+    </form>
+
+</div>

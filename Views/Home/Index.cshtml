@@ -1,0 +1,31 @@
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="jumbotron"> 
+    <h2>Welcome to REGGIE, the insurance registration reference application.</h2>
+    <p>REGGIE provides detailed information about insurance plans to help you identify and register the correct coverage in your Electronic Medical Record (EMR) system. To get started, <strong>select the state</strong> where the patient is receiving services, <strong>enter a keyword</strong> like the payor or plan name, and <strong>click the search icon (or) press Enter</strong>.</p>
+</div> 
+
+@model List<Reggie.ViewModels.NewsfeedViewModel>
+
+@if (@Model.Count() > 0) 
+{
+    <div class="container-fluid newsfeed">
+        <h3>In the News</h3>
+        <ul>
+            @foreach (var newsItem in Model)
+            {        
+                <li>
+                    <a class="newstitle" asp-action="details" asp-controller="insurance" asp-route-id="@newsItem.Id">@newsItem.Payor - @newsItem.Plan</a>
+                    <div>@newsItem.News</div>
+                </li>
+                <br>
+            }
+        </ul>
+    </div>
+}
+
+
+
+

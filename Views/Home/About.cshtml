@@ -1,0 +1,53 @@
+@{
+    ViewData["Title"] = "About REGGIE - the Insurance Registration Reference Application";
+}
+<div class="container-fluid" >
+    <h2>@ViewData["Title"]</h2>
+
+    </br>
+    <p>REGGIE helps to ensure accurate insurance registration by providing the following:</p>
+    <ul>
+        <li>
+            Detailed information about insurance plans to help you select the correct insurance plan in Epic.
+        </li>
+        <li>
+            Hints on how to register insurance plans correctly in your EMR system.
+        </li>
+        <li>
+            Opportunities to help reduce the chances of registration and eligibility-related errors and denials.
+        </li>     
+    </ul>
+    <p>While REGGIE doesn’t include every insurance plan available, it is a comprehensive list with many insurance plans likely to be seen when registering patients at any of our locations.</p>
+    <hr>
+    <p>To search and locate a plan in REGGIE, there are three simple steps to follow:</p>
+    <ol>
+        <li><strong>Select the state.</strong></li>
+        <ul>
+            <li>You must ALWAYS select a state. REGGIE will not let you search without first selecting a state.</li>
+            <li>The state you select is the state where the patient is receiving services. Plans are often registered differently in different states.  REGGIE takes this into account and returns payor-plan information specific to the state.</li>
+        </ul>
+        <li><strong>Enter a keyword.</strong></li>
+        <ul>
+            <li>Keywords are found on the card like the payor, the plan name or sometimes the employer name or union number.  The more specific the keyword, the more narrow your results. Use multiple keywords to narrow it even further!</li>
+        </ul>
+        <li><strong>Click the search icon (or) Press Enter.</strong></li>
+        <ul>
+            <li>The search results screen displays a list of payor-plans matching your criteria.</li>
+            <li>Click on one of the payor-plan names in the search results to display its details.</li>
+        </ul>
+    </ol>
+    </br>
+    <p>The payor-plan details are color coded to assist your review:</p>
+    <ul>
+        <li>
+            <span class="green"><strong>Green</strong></span> sections provide information to help you validate you’ve found the correct payor-plan. 
+        </li>
+        <li>
+            <span class="purple"><strong>Purple</strong></span> sections provide helpful hints for registering in your EMR system.  
+        </li>
+        <li>
+            <span class="teal"><strong>Blue</strong></span> sections provide specific information for the billing teams. 
+        </li>     
+    </ul>
+</div>
+

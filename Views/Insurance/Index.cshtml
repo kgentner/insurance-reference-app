@@ -1,0 +1,89 @@
+@{
+    ViewData["Title"] = "Payor-Plans";
+}
+
+@model List<Reggie.ViewModels.SearchResultsViewModel>
+
+<h2>@ViewData["Title"]</h2>
+
+<br>
+<div class="panel panel-custom-gray">
+    <div class="panel-heading search-results">Search Results</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-1 search-results-heading">Plans:</div>
+                <div class="col-sm-11 search-results-data">@Model.Count()</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1 search-results-heading">State:</div>
+                <div class="col-sm-11 search-results-data">@Context.Request.Query["p"]</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1 search-results-heading">Search Criteria:</div>
+                @if (!String.IsNullOrEmpty(@Context.Request.Query["q"]))
+                {
+                    <div class="col-sm-11 search-results-data">
+                        @Context.Request.Query["q"]
+                    </div>
+                }
+                else
+                {
+                    <div class="col-sm-11 search-results-data">
+                        [none]
+                    </div>
+                }
+            </div>
+            @if (@Context.Request.Query["p"] == "California")
+            {
+                <br>
+                <div class="row">
+                    <div class="search-results-tinytitle col-sm-12">
+                        ** indicates payor-plan name without specific Capitation, IPA, MG or Region.
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>  
+<div class="container-fluid">
+    <ul class="planindex">
+        @foreach (var InsuranceModel in Model)
+        {
+            <li class="planindex-plan">
+                @if (@InsuranceModel.IsPlanActive == false && @InsuranceModel.IsReggiePublished == false )
+                {
+                   <a asp-action="details" asp-controller="insurance" asp-route-id="@InsuranceModel.Id" class="planindex-plan-title">
+                        @InsuranceModel.Payor - @InsuranceModel.Plan  &nbsp;  <span class="plan-inactive">INACTIVE  &nbsp;   </span>&nbsp;<span class="plan-notpublished"> NOT PUBLISHED  &nbsp;  </span>
+                    </a>
+                   
+                }
+                else if (@InsuranceModel.IsPlanActive == false)
+                {
+                   <a asp-action="details" asp-controller="insurance" asp-route-id="@InsuranceModel.Id" class="planindex-plan-title">
+                        @InsuranceModel.Payor - @InsuranceModel.Plan  &nbsp;  <span class="plan-inactive">  &nbsp;  INACTIVE</span>
+                    </a>
+                    
+                }
+                else if (@InsuranceModel.IsReggiePublished == false )
+                {
+                   <a asp-action="details" asp-controller="insurance" asp-route-id="@InsuranceModel.Id" class="planindex-plan-title">
+                        @InsuranceModel.Payor - @InsuranceModel.Plan  &nbsp;  <span class="plan-notpublished">  &nbsp;  NOT PUBLISHED</span>
+                    </a>
+                    
+                }
+                else
+                {
+                    <a asp-action="details" asp-controller="insurance" asp-route-id="@InsuranceModel.Id" class="planindex-plan-title">
+                        @InsuranceModel.Payor - @InsuranceModel.Plan
+                    </a>
+                }
+                @if (!String.IsNullOrEmpty(@InsuranceModel.Keywords))
+                {
+                    <p class="planindex-plan-keywords"><strong>Keywords:</strong> @InsuranceModel.Keywords</p>
+                }
+
+                <hr />
+            </li>
+        }
+    </ul>
+</div>

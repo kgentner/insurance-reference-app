@@ -1,0 +1,515 @@
+@{
+    ViewData["Title"] = "Details";
+}
+
+@model Reggie.ViewModels.DetailsPageViewModel
+
+<div class="plan-details">
+    <h2>@ViewData["Title"]</h2>
+    @if (User.IsInRole("Admin"))
+    {
+    <div class="pull-right">
+        <a  class="link-from-to-edit" asp-area="" asp-controller="Insurance" asp-action="Create">Create</a>
+        <a class="link-from-to-edit" asp-area="" asp-controller="Insurance" asp-action="Edit" asp-route-id="@Model.Id" >| Edit</a>
+        <a  class="link-from-to-edit" asp-area="" asp-controller="Insurance" asp-action="Delete" asp-route-id="@Model.Id" >| Delete</a>
+        <br>
+    </div>
+    }
+    
+    @*GREEN SECTION*@
+	<div class="row"> 
+  		<div class="col-sm-12">
+      		<div class="panel panel-custom-green">
+                <div class="panel-heading">Payor</div>
+                <div class="panel-body">
+                    <h4 class="plan-details-title">@Model.Payor</h4>
+                    @if (!String.IsNullOrEmpty(@Model.PayorWebsite))
+                    {
+                        <br>
+                        <div class="plan-details-tinytitle">Payor Website: </div>
+                        <a href="@Model.PayorWebsite" target="none">@Model.PayorWebsite</a>
+                    }
+                    @if (!String.IsNullOrEmpty(@Model.OtherContactInfo))
+                    {
+                        <br>
+                        <br>
+                        <div class="plan-details-tinytitle">Other Contact Information:</div>
+                        <div>@Model.OtherContactInfo</div>
+                    }
+                </div>
+            </div>
+      	</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+      		<div class="panel panel-custom-green">
+                <div class="panel-heading">Plan</div>
+                <div class="panel-body"><h4 class="plan-details-title">@Model.Plan</h4></div>
+            </div>
+      	</div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-4">
+      		<div class="panel panel-custom-green">
+                <div class="panel-heading">Plan Types & Products</div>
+                <div class="panel-body panel-height panel-overflow">
+                    <ul class="plan-details-list">
+                        @if (@Model.Type_Commercial)
+                        {
+                            <li >Commercial</li>
+                        }
+                        @if (@Model.Type_CommercialMang)
+                        {
+                            <li >Commercial Managed</li>
+                        }
+                        @if (@Model.Type_Medicare)
+                        {
+                            <li >Medicare</li>
+                        }
+                        @if (@Model.Type_MedicareMang)
+                        {
+                            <li >Medicare Managed</li>
+                        }
+                        @if (@Model.Type_MedicareSup)
+                        {
+                            <li >Medicare Supplement</li>
+                        }
+                        @if (@Model.Type_Medicaid)
+                        {
+                            <li >Medicaid</li>
+                        }
+                        @if (@Model.Type_MedicaidMang)
+                        {
+                            <li >Medicaid Managed</li>
+                        }
+                        @if (@Model.Type_Military)
+                        {
+                            <li >Military</li>
+                        }
+                        @if (@Model.Product_EPO)
+                        {
+                            <li >EPO</li>
+                        }
+                        @if (@Model.Product_HMO)
+                        {
+                            <li >HMO</li>
+                        }
+                        @if (@Model.Product_Ind)
+                        {
+                            <li >Indemnity</li>
+                        }
+                        @if (@Model.Product_PEBB)
+                        {
+                            <li >PEBB</li>
+                        }
+                        @if (@Model.Product_PPO)
+                        {
+                            <li >PPO</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+      	</div>
+
+
+        <div class="col-sm-4">
+      		<div class="panel panel-custom-green">
+                <div class="panel-heading">
+                    Locations
+                    <a class="pull-right" href="#">
+                        <span class="glyphicon glyphicon-info-sign white" data-toggle="tooltip" title="Lists the states this payor-plan should be used for registration. Corresponds with where the patient is receiving services."></span>
+                    </a>
+                </div>
+                <div class="panel-body panel-height panel-overflow">
+                    <ul class="plan-details-list">
+                        @if (@Model.Location_AK)
+                        {
+                            <li >Alaska</li>
+                        }
+                        @if (@Model.Location_CA)
+                        {
+                            <li >California</li>
+                        }
+                        @if (@Model.Location_MT)
+                        {
+                            <li >Montana</li>
+                        }
+                        @if (@Model.Location_OR)
+                        {
+                            <li >Oregon</li>
+                        }
+                        @if (@Model.Location_WA)
+                        {
+                            <li >Washington</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+      	</div>
+
+        <div class="col-sm-4">
+      		<div class="panel panel-custom-green">
+                <div class="panel-heading">Keywords</div>
+                    @if (!String.IsNullOrEmpty(@Model.Keywords))
+                    {
+                        <div class="panel-body panel-height panel-overflow">@Model.Keywords</div>
+                    }
+                    else
+                    {
+                        <div class="panel-body panel-height panel-overflow not-available">Not Available.</div>
+                    }
+            </div>
+      	</div>
+  	</div>
+
+    <div class="row">
+        <div class="col-sm-12">
+      		<div class="panel panel-custom-green">
+                <div class="panel-heading">Status</div>
+                <div class="panel-body">
+                    @if (@Model.IsPlanActive == false)
+                    {
+                        <p class="plan-inactive">INACTIVE</p>
+                    }
+                    else
+                    {
+                        <p class="plan-active">ACTIVE</p>
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @if (@Model.IsReggiePublished == false)
+                        {
+                            <p class="plan-notpublished">NOT PUBLISHED</p>
+                        }
+                        else
+                        {
+                            <p class="plan-published">PUBLISHED</p>
+                        }
+                    }
+
+                </div>
+            </div>
+      	</div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-custom-green">
+                <div class="panel-heading">
+                    Card Information
+                </div>
+                @if ( (!String.IsNullOrEmpty(@Model.Address1)) || (!String.IsNullOrEmpty(@Model.ID_Description)) )
+                {
+                    <div class="panel-body panel-height panel-overflow">
+                        @if ( (!String.IsNullOrEmpty(@Model.Address1)) && (!String.IsNullOrEmpty(@Model.City)) && (!String.IsNullOrEmpty(@Model.State)) && (!String.IsNullOrEmpty(@Model.Zip)) )
+                        {
+                            <div class="plan-details-tinytitle">
+                                Address
+                            </div>
+                            <p>@Model.Address1 @Model.Address2<br>@Model.City, @Model.State @Model.Zip</p>   
+                        }
+                        @if (!String.IsNullOrEmpty(@Model.ID_Description))
+                        {
+                            <br>
+                            <div class="plan-details-tinytitle">
+                                ID Description
+                            </div>
+                            <p>@Model.ID_Description</p>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="panel-body panel-height panel-overflow not-available">Not Available.</div>
+                }
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-custom-green">
+                <div class="panel-heading">Hints for Reading Card</div>
+                @if ( String.IsNullOrEmpty(@Model.ReadingHint1)
+                    && String.IsNullOrEmpty(@Model.ReadingHint2)
+                    && String.IsNullOrEmpty(@Model.ReadingHint3)
+                    && String.IsNullOrEmpty(@Model.ReadingHint4)
+                    && String.IsNullOrEmpty(@Model.ReadingHint5))
+                {
+                    <div class="panel-body panel-height panel-overflow not-available">Not Available.</div>
+                }    
+                else
+                { 
+                    <div class="panel-body panel-height panel-overflow">
+                        <ul class="plan-details-list">
+                            @if ( !String.IsNullOrEmpty(@Model.ReadingHint1))
+                            {
+                                <li >@Model.ReadingHint1</li>
+                            }
+                            @if ( !String.IsNullOrEmpty(@Model.ReadingHint2))
+                            {
+                                <li >@Model.ReadingHint2</li>
+                            }
+                            @if ( !String.IsNullOrEmpty(@Model.ReadingHint3))
+                            {
+                                <li >@Model.ReadingHint3</li>
+                            }
+                            @if ( !String.IsNullOrEmpty(@Model.ReadingHint4))
+                            {
+                                <li >@Model.ReadingHint4</li>
+                            }
+                            @if ( !String.IsNullOrEmpty(@Model.ReadingHint5))
+                            {
+                                <li >@Model.ReadingHint5</li>
+                            }
+                        </ul>
+                    </div>
+                }
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="panel panel-custom-purple">
+                <div class="panel-heading">Hints for Registering Insurance in EMR</div>
+                @if ( String.IsNullOrEmpty(@Model.RegistrationHint1)
+                    && String.IsNullOrEmpty(@Model.RegistrationHint2)
+                    && String.IsNullOrEmpty(@Model.RegistrationHint3)
+                    && String.IsNullOrEmpty(@Model.RegistrationHint4)
+                    && String.IsNullOrEmpty(@Model.RegistrationHint5))
+                {
+                    <div class="panel-body panel-height panel-overflow not-available">Not Available.</div>
+                }    
+                else
+                { 
+                    <div class="panel-body panel-height panel-overflow">
+                        <ul class="plan-details-list">
+                            @if ( !String.IsNullOrEmpty(@Model.RegistrationHint1))
+                            {
+                                <li >@Model.RegistrationHint1</li>
+                            }
+                            @if ( !String.IsNullOrEmpty(@Model.RegistrationHint2))
+                            {
+                                <li >@Model.RegistrationHint2</li>
+                            }
+                            @if ( !String.IsNullOrEmpty(@Model.RegistrationHint3))
+                            {
+                                <li >@Model.RegistrationHint3</li>
+                            }
+                            @if ( !String.IsNullOrEmpty(@Model.RegistrationHint4))
+                            {
+                                <li >@Model.RegistrationHint4</li>
+                            }
+                            @if ( !String.IsNullOrEmpty(@Model.RegistrationHint5))
+                            {
+                                <li >@Model.RegistrationHint5</li>
+                            }
+                        </ul>
+                    </div>
+                }
+             </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-custom-purple">
+                <div class="panel-heading">
+                    Real Time Eligibility Response Information
+                </div>
+                @if ( String.IsNullOrEmpty(@Model.RTE_Info1)
+                    && String.IsNullOrEmpty(@Model.RTE_Info2)
+                    && String.IsNullOrEmpty(@Model.RTE_Info3)
+                    && String.IsNullOrEmpty(@Model.RTE_Info4)
+                    && String.IsNullOrEmpty(@Model.RTE_Info5))
+                {
+                    <div class="panel-body panel-height panel-overflow not-available">Not Available.</div>
+                }    
+                else
+                { 
+                    <div class="panel-body panel-height panel-overflow">
+                        <ul class="plan-details-list">
+                            @if ( !String.IsNullOrEmpty(@Model.RTE_Info1))
+                            {
+                                <li >@Model.RTE_Info1</li>
+                            }
+                            @if ( !String.IsNullOrEmpty(@Model.RTE_Info2))
+                            {
+                                <li >@Model.RTE_Info2</li>
+                            }
+                            @if ( !String.IsNullOrEmpty(@Model.RTE_Info3))
+                            {
+                                <li >@Model.RTE_Info3</li>
+                            }
+                            @if ( !String.IsNullOrEmpty(@Model.RTE_Info4))
+                            {
+                                <li >@Model.RTE_Info4</li>
+                            }
+                            @if ( !String.IsNullOrEmpty(@Model.RTE_Info5))
+                            {
+                                <li >@Model.RTE_Info5</li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-custom-purple">
+                <div class="panel-heading">
+                    Associated Workflows
+                </div>
+                @if ( String.IsNullOrEmpty(@Model.Assoc_Workflow1)
+                    && String.IsNullOrEmpty(@Model.Assoc_Workflow2)
+                    && String.IsNullOrEmpty(@Model.Assoc_Workflow3)
+                    && String.IsNullOrEmpty(@Model.Assoc_Workflow4)
+                    && String.IsNullOrEmpty(@Model.Assoc_Workflow5))
+                {
+                    <div class="panel-body panel-height panel-overflow not-available">Not Available.</div>
+                }    
+                else
+                {
+                    <div class="panel-body panel-height panel-overflow">
+                        <ul class="plan-details-list">
+                            @if ( !String.IsNullOrEmpty(@Model.Assoc_Workflow1))
+                            {
+                                <li ><a href="@Model.Assoc_Workflow1" target="_blank" >@Model.Assoc_Workflow1_Title</a></li>
+                            }
+                            @if ( !String.IsNullOrEmpty(@Model.Assoc_Workflow2))
+                            {
+                                <li ><a href="@Model.Assoc_Workflow2" target="_blank" >@Model.Assoc_Workflow2_Title</a></li>
+                            }
+                            @if ( !String.IsNullOrEmpty(@Model.Assoc_Workflow3))
+                            {
+                                <li ><a href="@Model.Assoc_Workflow3" target="_blank" >@Model.Assoc_Workflow3_Title</a></li>
+                            }
+                            @if ( !String.IsNullOrEmpty(@Model.Assoc_Workflow4))
+                            {
+                                <li ><a href="@Model.Assoc_Workflow4" target="_blank" >@Model.Assoc_Workflow4_Title</a></li>
+                            }
+                            @if ( !String.IsNullOrEmpty(@Model.Assoc_Workflow5))
+                            {
+                                <li ><a href="@Model.Assoc_Workflow5" target="_blank" >@Model.Assoc_Workflow5_Title</a></li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-custom-teal">
+                <div class="panel-heading">
+                    EDI Number
+                </div>
+                @if (!String.IsNullOrEmpty(@Model.EDI_Number))
+                {
+                    <div class="panel-body">
+                        @Model.EDI_Number
+                    </div>
+                }
+                else
+                {
+                    <div class="panel-body not-available">
+                        Not Available.
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-custom-teal">
+                <div class="panel-heading">
+                    Hospital Billing Office Information
+                </div>
+                @if ( String.IsNullOrEmpty(@Model.HB_OfficeInfo1)
+                    && String.IsNullOrEmpty(@Model.HB_OfficeInfo2)
+                    && String.IsNullOrEmpty(@Model.HB_OfficeInfo3)
+                    && String.IsNullOrEmpty(@Model.HB_OfficeInfo4)
+                    && String.IsNullOrEmpty(@Model.HB_OfficeInfo5))
+                {
+                    <div class="panel-body panel-height panel-overflow not-available">Not Available.</div>
+                }    
+                else
+                { 
+                    <div class="panel-body panel-height panel-overflow">
+                        <ul class="plan-details-list">
+                            @if ( !String.IsNullOrEmpty(@Model.HB_OfficeInfo1))
+                            {
+                                <li >@Model.HB_OfficeInfo1</li>
+                            }
+                            @if ( !String.IsNullOrEmpty(@Model.HB_OfficeInfo2))
+                            {
+                                <li >@Model.HB_OfficeInfo2</li>
+                            }
+                            @if ( !String.IsNullOrEmpty(@Model.HB_OfficeInfo3))
+                            {
+                                <li >@Model.HB_OfficeInfo3</li>
+                            }
+                            @if ( !String.IsNullOrEmpty(@Model.HB_OfficeInfo4))
+                            {
+                                <li >@Model.HB_OfficeInfo4</li>
+                            }
+                            @if ( !String.IsNullOrEmpty(@Model.HB_OfficeInfo5))
+                            {
+                                <li >@Model.HB_OfficeInfo5</li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="panel panel-custom-teal">
+                <div class="panel-heading">
+                    Professional Billing Office Information
+                </div>
+                @if ( String.IsNullOrEmpty(@Model.PB_OfficeInfo1)
+                    && String.IsNullOrEmpty(@Model.PB_OfficeInfo2)
+                    && String.IsNullOrEmpty(@Model.PB_OfficeInfo3)
+                    && String.IsNullOrEmpty(@Model.PB_OfficeInfo4)
+                    && String.IsNullOrEmpty(@Model.PB_OfficeInfo5))
+                {
+                    <div class="panel-body panel-height panel-overflow not-available">Not Available.</div>
+                }    
+                else
+                { 
+                    <div class="panel-body panel-height panel-overflow">
+                        <ul class="plan-details-list">
+                            @if ( !String.IsNullOrEmpty(@Model.PB_OfficeInfo1))
+                            {
+                                <li >@Model.PB_OfficeInfo1</li>
+                            }
+                            @if ( !String.IsNullOrEmpty(@Model.PB_OfficeInfo2))
+                            {
+                                <li >@Model.PB_OfficeInfo2</li>
+                            }
+                            @if ( !String.IsNullOrEmpty(@Model.PB_OfficeInfo3))
+                            {
+                                <li >@Model.PB_OfficeInfo3</li>
+                            }
+                            @if ( !String.IsNullOrEmpty(@Model.PB_OfficeInfo4))
+                            {
+                                <li >@Model.PB_OfficeInfo4</li>
+                            }
+                            @if ( !String.IsNullOrEmpty(@Model.PB_OfficeInfo5))
+                            {
+                                <li >@Model.PB_OfficeInfo5</li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>@*Row*@
+
+</div>
