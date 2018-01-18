@@ -1,4 +1,4 @@
-# insurance-reference-application
+# insurance-reference-app
 
 Check it out on Azure: <a href="https://insurancereferenceapp.azurewebsites.net">https://insurancereferenceapp.azurewebsites.net</a>
 
